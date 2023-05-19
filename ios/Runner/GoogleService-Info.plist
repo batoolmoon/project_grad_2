@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>303288204375-2irqsm4m3uaar10s0au8noa7q8ku84o9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.303288204375-2irqsm4m3uaar10s0au8noa7q8ku84o9</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>303288204375-qvkth7s7r7fjb3safefljdq05flrv01q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB0LX-ZVlSOW4dcA5JHOuZ8GYb_oD5hdM4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>303288204375</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.tfliteImageClassification</string>
+	<key>PROJECT_ID</key>
+	<string>graduation-pro-2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>graduation-pro-2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:303288204375:ios:dde3a5c7377bebc92df712</string>
+</dict>
+</plist>

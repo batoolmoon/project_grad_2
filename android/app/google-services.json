@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "303288204375",
+    "project_id": "graduation-pro-2",
+    "storage_bucket": "graduation-pro-2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303288204375:android:6d8e64b1abfbca5d2df712",
+        "android_client_info": {
+          "package_name": "com.example.tflite_image_classification"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303288204375-qvkth7s7r7fjb3safefljdq05flrv01q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tflite_image_classification",
+            "certificate_hash": "83d4a3aa138248331c9861490245dc5da5992bce"
+          }
+        },
+        {
+          "client_id": "303288204375-faq54saot9ann6uji888dbfg5ne916el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyuNLanlUCLRV5niRmFMQadQ8mk-N4ud0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303288204375-faq54saot9ann6uji888dbfg5ne916el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
