@@ -1,3 +1,4 @@
+import 'package:Fitnesscore/food_recipes/foodRecipes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Fitnesscore/BMI/bmiscreen.dart';
@@ -5,8 +6,10 @@ import 'package:Fitnesscore/steps_counter/steps.dart';
 import 'package:Fitnesscore/user_profile/userprofile.dart';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import 'meals_ML/TfliteModel.dart';
+import 'card.dart';
+import '../meals_ML/TfliteModel.dart';
 
 class DashBord extends StatefulWidget {
   const DashBord({Key? key}) : super(key: key);
@@ -16,7 +19,23 @@ class DashBord extends StatefulWidget {
 }
 
 class _DashBordState extends State<DashBord> {
+  String steps ="0.0";
   @override
+
+  void initState(){
+    super.initState();
+    getSharedData();
+  }
+
+  getSharedData() async {
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+   setState(() {
+     steps=prefs.getString("steps")!;
+   });
+}
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,78 +64,7 @@ class _DashBordState extends State<DashBord> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Container(
-                  margin: EdgeInsets.all(20),
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height/4.5,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient (
-                        begin: Alignment(1, 1),
-                        end: Alignment(-1.479, -1.615),
-                        colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-                        stops: <double>[0, 1],
-                      ),
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey,
-                        offset: Offset(5.0,5.0),
-                        blurRadius: 5
-                      )
-                    ]
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        //color: Colors.purple,
-                        child:CircularPercentIndicator(
-                          radius: 50.0,
-                          lineWidth: 10.0,
-                          percent:0.2,//double.parse(steps)/10000 ,
-                          center:  Icon(
-                            Icons.directions_walk,
-                            size: 50.0,
-                            color: Colors.white,
-                          ),
-                          backgroundColor: Colors.grey,
-                          progressColor: Colors.white,
-                        ),
-                      ),
-                       Container(
-                         child: CircularPercentIndicator(
-                           radius: 50.0,
-                           lineWidth: 10.0,
-                           percent:0.2,//double.parse(steps)/10000 ,
-                           center: Icon(
-                             Icons.fastfood_outlined,
-                             size: 50.0,
-                             color: Colors.white,
-                           ),
-                           backgroundColor: Colors.grey,
-                           progressColor: Colors.white,
-                         ),
-                       ),
-                      Container(
-                        child:  CircularPercentIndicator(
-                          radius: 50.0,
-                          lineWidth: 10.0,
-                          percent:0.2,//double.parse(steps)/10000 ,
-                          center: new Icon(
-                            Icons.directions_walk,
-                            size: 50.0,
-                            color: Colors.white,
-                          ),
-                          backgroundColor: Colors.grey,
-                          progressColor: Colors.white,
-                        ),
-                      )
-
-
-
-                    ],
-                  ),
-                ),
+                DailyTrack(),
                 SizedBox(height: 10,),
                 Container(
                   margin: EdgeInsets.all(20),
@@ -212,18 +160,21 @@ class _DashBordState extends State<DashBord> {
                             child: Text("step"),),
                           ),
                           SizedBox(height:10 ,),
-                          Container(
-                            width: MediaQuery.of(context).size.width/3.5,
-                            height: MediaQuery.of(context).size.width/3,
-                              decoration: const BoxDecoration(
-                                gradient: LinearGradient (
-                                  begin: Alignment(1, 1),
-                                  end: Alignment(-1.479, -1.615),
-                                  colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-                                  stops: <double>[0, 1],
+                          GestureDetector(
+                            onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>food()));},
+                            child: Container(
+                              width: MediaQuery.of(context).size.width/3.5,
+                              height: MediaQuery.of(context).size.width/3,
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient (
+                                    begin: Alignment(1, 1),
+                                    end: Alignment(-1.479, -1.615),
+                                    colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
+                                    stops: <double>[0, 1],
+                                  ),
                                 ),
-                              ),
-                              margin: EdgeInsets.fromLTRB(20, 0, 20, 10)),
+                                margin: EdgeInsets.fromLTRB(20, 0, 20, 10)),
+                          ),
                         ],
                       )
                     ],

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:Fitnesscore/dash_bord.dart';
+import 'package:Fitnesscore/home/dash_bord.dart';
 import 'package:Fitnesscore/member/register_1.dart';
 import 'dart:ui';
 import '../utils.dart';

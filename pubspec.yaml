@@ -28,6 +28,13 @@ dependencies:
   cloud_firestore: ^4.5.3
   tflite: ^1.1.2
   image_picker: ^0.8.4+11
+  flutter_local_notifications: ^13.0.0
+  flutter_native_timezone: ^2.0.0
+  #lama
+  http: ^0.13.3
+  url_launcher: ^6.1.11
+
+
 
 dev_dependencies:
   flutter_test:

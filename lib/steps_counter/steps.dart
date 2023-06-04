@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
@@ -47,6 +48,15 @@ class _StepsState extends State<Steps> {
     });
     print(_status);
   }
+
+  //inorder to track
+  getSharedData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setString("steps", steps);
+    });
+  }
+
 
   void onStepCountError(error) {
     print('onStepCountError: $error');
