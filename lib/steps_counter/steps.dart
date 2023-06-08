@@ -4,6 +4,8 @@ import 'package:pedometer/pedometer.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../home/BottomNavBar.dart';
+
 String formatDate(DateTime d) {
   return d.toString().substring(0, 19);
 }
@@ -98,6 +100,7 @@ class _StepsState extends State<Steps> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        bottomNavigationBar: BottomNavBar(),
         appBar: AppBar(
           title: Text("Steps And Body Fit"),
           leading: IconButton(onPressed: () { Navigator.pop(context); },

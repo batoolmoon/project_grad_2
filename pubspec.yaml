@@ -33,6 +33,7 @@ dependencies:
   #lama
   http: ^0.13.3
   url_launcher: ^6.1.11
+  curved_labeled_navigation_bar: ^2.0.2
 
 
 

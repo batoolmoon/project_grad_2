@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import '../home/BottomNavBar.dart';
 import 'api_model.dart';
 
 
@@ -47,6 +48,7 @@ class _foodState extends State<food> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavBar(),
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,

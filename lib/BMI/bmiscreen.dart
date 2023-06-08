@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
+import '../home/BottomNavBar.dart';
 import 'age_weight_weight.dart';
 import 'gender_widget.dart';
 import 'height_widget.dart';
@@ -26,7 +27,8 @@ class _bmiscreenState extends State<bmiscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        bottomNavigationBar: BottomNavBar(),
+        appBar: AppBar(
         centerTitle: true,
         flexibleSpace:Container(
           decoration: const BoxDecoration(

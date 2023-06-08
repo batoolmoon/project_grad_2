@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:Fitnesscore/BMI/bmiscreen.dart';
 import 'package:Fitnesscore/steps_counter/steps.dart';
 import 'package:Fitnesscore/user_profile/userprofile.dart';
-import 'package:pedometer/pedometer.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'BottomNavBar.dart';
 import 'card.dart';
 import '../meals_ML/TfliteModel.dart';
 
@@ -20,6 +18,7 @@ class DashBord extends StatefulWidget {
 
 class _DashBordState extends State<DashBord> {
   String steps ="0.0";
+  double waterValue=0;
   @override
 
   void initState(){
@@ -90,6 +89,59 @@ class _DashBordState extends State<DashBord> {
                 ),
                 SizedBox(height: 10,),
                 Container(
+                  margin: EdgeInsets.all(20),
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height/7,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient (
+                        begin: Alignment(1, 1),
+                        end: Alignment(-1.479, -1.615),
+                        colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
+                        stops: <double>[0, 1],
+                      ),
+
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey,
+                            offset: Offset(5.0,5.0),
+                            blurRadius: 5
+                        )
+                      ]
+                  ),
+               child: Row(
+                 children: [
+                 /*  //Image.network("https://m.media-amazon.com/images/I/61UhsQE5xOL.png",
+                   width: 100,
+                   height: 120,),*/
+                 Column(
+                   children: [
+                     Text("Water"),
+                     SizedBox(height: 10,),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       children: [
+                       ElevatedButton(onPressed: (){waterValue=0.25;}, child: Text("250 ML"),
+                         style:ElevatedButton.styleFrom(
+                           backgroundColor: Colors.purpleAccent
+                         ) ,),
+                      SizedBox(width: 4,),
+                       ElevatedButton(onPressed: (){waterValue=0.5;}, child: Text("500 ML"),
+                         style:ElevatedButton.styleFrom(
+                             backgroundColor: Colors.purpleAccent
+                         ) ,),
+                         SizedBox(width: 4,),
+                         ElevatedButton(onPressed: (){waterValue=0.9;}, child: Text(" 1 L"),
+                           style:ElevatedButton.styleFrom(
+                               backgroundColor: Colors.purpleAccent
+                           ) ,)
+                     ],)
+                   ],
+                 )
+                 ],
+               ),
+                ),
+               /* Container(
                   margin: EdgeInsets.all(20),
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height/2.5,
@@ -179,12 +231,13 @@ class _DashBordState extends State<DashBord> {
                       )
                     ],
                   ),
-                ),
+                ),*/
               ],
             ),
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
