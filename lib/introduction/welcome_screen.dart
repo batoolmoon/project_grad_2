@@ -1,151 +1,111 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
+import 'intro_slider.dart';
 
-
-class Welcome extends StatefulWidget {
-  const Welcome({Key? key}) : super(key: key);
-
+class Welcome extends StatefulWidget{
   @override
-  _WelcomeState createState() => _WelcomeState();
+  State<StatefulWidget> createState() {
+    return _WelcomeState();
+  }
+
 }
 
-class _WelcomeState extends State<Welcome> {
+
+
+class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin{
+
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+
+  late TextAlign theAlignment;
+  late String welcomeTitle;
+  bool isLoading = true;
+
+
+
+  late Timer _timer;
+  int _start = 3;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+
+    _animation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_controller);
+
+    startTimer();
+
+  }
+
+  @override
+  void dispose(){
+    _timer.cancel();
+    super.dispose();
+  }
+
+
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+          (Timer timer) => setState(
+            () {
+          if (_start < 1) {
+            timer.cancel();
+          } else {
+            _start = _start - 1;
+            if(_start == 0){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>IntroSlider()));
+            }
+            if(_start == 1){
+              _controller.forward();
+            }
+          }
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-
+    // TODO: implement build
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          padding:  EdgeInsets.fromLTRB(30, 351, 30, 41),
-          width:  double.infinity,
-          decoration:  BoxDecoration (
-            color:  Color(0xffffffff),
-            borderRadius:  BorderRadius.circular(40),
-          ),
-          child:
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment:  CrossAxisAlignment.center,
-              children:  [
-                Container(
-                  margin:  EdgeInsets.fromLTRB(65, 0, 64, 264),
-                  width:  double.infinity,
-                  height:  97,
-                  child:
-                  Stack(
-                    children:  [
-                      Positioned(
-                        left:  0,
-                        top:  70,
-                        child:
-                        Align(
-                          child:
-                          SizedBox(
-                            width:  186,
-                            height:  27,
-                            child:
-                            Text(
-                              'Everybody Can Train',
-                              style: TextStyle (
-                                fontSize:  18,
-                                fontWeight:  FontWeight.w400,
-                                height:  1.5,
-                                color:  Color(0xff7b6f72),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        left:  11,
-                        top:  0,
-                        child:
-                        Align(
-                          child:
-                          SizedBox(
-                            width:  156,
-                            height:  75,
-                            child:
-                            RichText(
-                              text:
-                              TextSpan(
-                                style:  TextStyle (
-                                  fontSize:  36,
-                                  fontWeight:  FontWeight.w700,
-                                  height:  1.5,
-                                  color:  Color(0xff1d1517),
-                                ),
-                                children:  [
-                                  TextSpan(
-                                    text:  'Fitnes',
-                                    style:  TextStyle (
-                                      fontSize:  36,
-                                      fontWeight:  FontWeight.w700,
-                                      height:  1.5,
-                                      color:  Color(0xff1d1517),
-                                    ),
-                                  ),
-                                  TextSpan(
-                                    text:  's',
-                                  ),
-                                  TextSpan(
-                                    text:  'X',
-                                    style:  TextStyle (
-                                      fontSize:  50,
-                                      fontWeight:  FontWeight.w700,
-                                      height:  1.5,
-                                      color:  Color(0xff1d1517),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+        body: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              foregroundDecoration: const BoxDecoration(
+                gradient: LinearGradient (
+                  begin: Alignment(1, 1),
+                  end: Alignment(-1.479, -1.615),
+                  colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
+                  stops: <double>[0, 1],
                 ),
-                Container(
-                  width:  double.infinity,
-                  height:  60,
-                  decoration:  BoxDecoration (
-                    borderRadius:  BorderRadius.circular(99),
-                    gradient:  LinearGradient (
-                      begin:  Alignment(1, 1),
-                      end:  Alignment(-1.479, -1.615),
-                      colors:  <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-                      stops:  <double>[0, 1],
-                    ),
-                    boxShadow:  [
-                      BoxShadow(
-                        color:  Color(0x4c95adfe),
-                        offset:  Offset(0 ,10),
-                        blurRadius:  11,
-                      ),
-                    ],
-                  ),
-                  child:
-                  Center(
-                    child:
-                    Text(
-                      'Get Started',
-                      style:  TextStyle (
-                        fontSize:  16,
-                        fontWeight:  FontWeight.w700,
-                        height:  1.5,
-                        color:  Color(0xffffffff),
-                      ),
-                    ),
-                  ),
+              ),),
+            Center(
+              child: FadeTransition(
+                opacity:_animation ,
+                child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset(
+                      'assets/intro.png',
+                      width: 250.0,
+                    )
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
+
+          ],
+        )
     );
   }
 }

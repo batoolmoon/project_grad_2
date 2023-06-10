@@ -1,11 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
-class DailyTrack extends StatelessWidget {
-  const DailyTrack({Key ? key}): super(key: key);
+class DailyTrack extends StatefulWidget {
+  const DailyTrack({Key? key}) : super(key: key);
 
+  @override
+  _DailyTrackState createState() => _DailyTrackState();
+}
+
+class _DailyTrackState extends State<DailyTrack> {
+  String Steps="";
+  late double Water=0;
+  String Calories="";
+
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getSharedData();
+  }
+
+//inorder to track
+  getSharedData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+     // Steps= prefs.getString("steps")!;
+      Water=prefs.getDouble( "water")!;
+    });
+  }
   Widget _circleProgress() {
     return SizedBox(
       width: 160,
@@ -81,7 +107,7 @@ class DailyTrack extends StatelessWidget {
         children: [
           _macronutrientsTile(title: 'Steps', percentValue: 0.4, amountInGram: '10000 steps/day'),
           _macronutrientsTile(title: 'Fat', percentValue: 0.2, amountInGram: '14/85g'),
-          _macronutrientsTile(title: 'Water', percentValue: 0.2, amountInGram: '4 cups/day')
+          _macronutrientsTile(title: 'Water', percentValue: Water/10, amountInGram: '4 cups/day')
 
         ]
     );
@@ -133,35 +159,31 @@ class DailyTrack extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: (){},
-      child: AspectRatio(
-        aspectRatio: 1.5,
-        child: Container(
-          margin:EdgeInsets.fromLTRB(18, 20, 18,0) ,
-          padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
-    gradient: LinearGradient (
-    begin: Alignment(1, 1),
-    end: Alignment(-1.479, -1.615),
-    colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-    stops: <double>[0, 1],
-    ),
-            borderRadius: BorderRadius.circular(30),
+    return AspectRatio(
+      aspectRatio: 1.5,
+      child: Container(
+        margin:EdgeInsets.fromLTRB(18, 20, 18,0) ,
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient (
+            begin: Alignment(1, 1),
+            end: Alignment(-1.479, -1.615),
+            colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
+            stops: <double>[0, 1],
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _circleProgress(),
-              _macronutrients()
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            _circleProgress(),
+            _macronutrients()
 
-            ],
-          ),
+          ],
         ),
       ),
     );
   }
-
 
 }

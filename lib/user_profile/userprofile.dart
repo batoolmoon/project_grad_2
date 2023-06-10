@@ -51,277 +51,279 @@ class _UserProfileState extends State<UserProfile> {
         ),
       ),
       body: SafeArea(
-        child:Container(
-          child: SingleChildScrollView(
-            child: Column (
-              children: [
-             /*   Center(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 20 , bottom: 20),
-                    width: 110,
-                    height: 110,
+        child:Center(
+          child: Container(
+            child: SingleChildScrollView(
+              child: Column (
+                children: [
+               /*   Center(
+                    child: Container(
+                      margin: EdgeInsets.only(top: 20 , bottom: 20),
+                      width: 110,
+                      height: 110,
+                      decoration: BoxDecoration(
+                        //  color: Colors.orange,
+                          borderRadius: BorderRadius.all(Radius.circular(80)),
+                          // border: Border.all(color: Colors.purpleAccent, width: 3),
+                          image: DecorationImage(
+                              image: AssetImage("assets/group.png")
+                          )
+                      ),
+                    ),
+                  ),*/
+                  Container(
+                    width: width/1.1,
+                    height: height/1.4,
                     decoration: BoxDecoration(
-                      //  color: Colors.orange,
-                        borderRadius: BorderRadius.all(Radius.circular(80)),
-                        // border: Border.all(color: Colors.purpleAccent, width: 3),
-                        image: DecorationImage(
-                            image: AssetImage("assets/group.png")
-                        )
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: LinearGradient (
+                        begin: Alignment(1, 1),
+                        end: Alignment(-1.479, -1.615),
+                        colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
+                        stops: <double>[0, 1],
+                      ),
                     ),
-                  ),
-                ),*/
-                Container(
-                  width: width/1.1,
-                  height: height/1.4,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    gradient: LinearGradient (
-                      begin: Alignment(1, 1),
-                      end: Alignment(-1.479, -1.615),
-                      colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-                      stops: <double>[0, 1],
-                    ),
-                  ),
-                  //margin: EdgeInsets.fromLTRB(20, 60, 20, 80),
-                  child: ListView(
-                    children: [
-                      AbsorbPointer(
-                        absorbing:absorbPointer ,
-                        child: Container(
-                          width: width,
-                          margin: EdgeInsets.fromLTRB(5, 10, 3, 5),
-                          //color: Colors.purple,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Opacity(
-                                opacity: opacity,
-                                child: Container(
-                                  //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                                  margin: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15)
-                                  ),
-                                  width: width/2.5,
-                                  height: height/15,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                        prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        )
-                                    ),
-                                  ),
-
-
-                                ),
-                              ),
-                              Opacity(
-                                opacity: opacity,
-                                child: Container(
-                                  //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                                  margin: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15)
-                                  ),
-                                  width: width/2.5,
-                                  height: height/15,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                        prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        )
-                                    ),
-                                  ),
-
-
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      AbsorbPointer(
-                        absorbing: absorbPointer,
-                        child: Opacity(
-                          opacity: opacity,
+                    //margin: EdgeInsets.fromLTRB(20, 60, 20, 80),
+                    child: ListView(
+                      children: [
+                        AbsorbPointer(
+                          absorbing:absorbPointer ,
                           child: Container(
-                            padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                            margin: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)
-                            ),
                             width: width,
-                            height: height/15,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  prefixIcon:Icon(Icons.email_outlined , size: 25,color: Colors.purpleAccent,),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )
-                              ),
-                            ),
-
-
-                          ),
-                        ),
-                      ),
-                      AbsorbPointer(
-                        absorbing: absorbPointer,
-                        child: Opacity(
-                          opacity: opacity,
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                            margin: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)
-                            ),
-                            width: width,
-                            height: height/15,
-                            child: TextFormField(
-                              decoration: InputDecoration(
-                                  prefixIcon:Icon(Icons.password , size: 25,color: Colors.purpleAccent,),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide.none,
-                                  )
-                              ),
-                            ),
-
-
-                          ),
-                        ),
-                      ),
-                      AbsorbPointer(
-                        absorbing: absorbPointer,
-
-                        child: Container(
-                          width: width,
-                          //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                          margin: EdgeInsets.fromLTRB(5, 10, 5, 5),
-                          //color: Colors.purple,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Opacity(
-                                opacity: opacity,
-                                child: Container(
-                                  //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                                  margin: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15)
-                                  ),
-                                  width: width/2.5,
-                                  height: height/15,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                        prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        )
-                                    ),
-                                  ),
-
-
-                                ),
-                              ),
-                              Opacity(
-                                opacity: opacity,
-                                child: Container(
-                                  //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                                  margin: EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(15)
-                                  ),
-                                  width: width/2.5,
-                                  height: height/15,
-                                  child: TextFormField(
-                                    decoration: InputDecoration(
-                                        prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                        )
-                                    ),
-                                  ),
-
-
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      AbsorbPointer(
-                        absorbing: absorbPointer,
-
-                        child: Opacity(
-                          opacity: opacity,
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                            margin: EdgeInsets.fromLTRB(10, 10, 20, 5),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(15)
-                            ),
-                            width: width,
-                            height: height/15,
+                            margin: EdgeInsets.fromLTRB(5, 10, 3, 5),
+                            //color: Colors.purple,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                // Padding(padding: EdgeInsets.only(left: 20,right: 20)),
-                                Icon(Icons.notifications_active , size: 25,color: Colors.purpleAccent,),
-                                SizedBox(width: 15,),
-                                Text("Notification"),
-                                SizedBox(width: 70,),
-                                Switch(value:notification , onChanged:(value) {
-                                  setState(() {
-                                    notification=!notification;
-                                  });
-                                })
+                                Opacity(
+                                  opacity: opacity,
+                                  child: Container(
+                                    //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                                    margin: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15)
+                                    ),
+                                    width: width/2.5,
+                                    height: height/15,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                          )
+                                      ),
+                                    ),
+
+
+                                  ),
+                                ),
+                                Opacity(
+                                  opacity: opacity,
+                                  child: Container(
+                                    //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                                    margin: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15)
+                                    ),
+                                    width: width/2.5,
+                                    height: height/15,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                          )
+                                      ),
+                                    ),
+
+
+                                  ),
+                                ),
                               ],
                             ),
-
-
-
                           ),
                         ),
-                      ),
-                      SizedBox(height: 40,),
-                      Container(
-                        width: width/2.5,
-                        margin: EdgeInsets.only(left: 20,right: 20),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(40),
-                            color: Colors.purpleAccent
-                        ),
-                        child: ElevatedButton(
-                            onPressed: () {
-                              NotificationService().showNotification(title: "Iam batool",body: "Iam notification");
-                              setState(() {
-                                editAndSave=!editAndSave;
-                                absorbPointer=!absorbPointer;
-                                editAndSave?opacity=1.0:opacity=0.5;
-                              });
+                        AbsorbPointer(
+                          absorbing: absorbPointer,
+                          child: Opacity(
+                            opacity: opacity,
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                              margin: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                              width: width,
+                              height: height/15,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    prefixIcon:Icon(Icons.email_outlined , size: 25,color: Colors.purpleAccent,),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    )
+                                ),
+                              ),
 
-                            },
-                            child: editAndSave?Text("Save",style:TextStyle(color: Colors.white,fontSize:15),):Text("Edit",style:TextStyle(color: Colors.white,fontSize:15),),
-                            style:ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              elevation: 0.0,
-                            )
-                        ),
-                      ),
 
-                    ],
+                            ),
+                          ),
+                        ),
+                        AbsorbPointer(
+                          absorbing: absorbPointer,
+                          child: Opacity(
+                            opacity: opacity,
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                              margin: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                              width: width,
+                              height: height/15,
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                    prefixIcon:Icon(Icons.password , size: 25,color: Colors.purpleAccent,),
+                                    border: OutlineInputBorder(
+                                      borderSide: BorderSide.none,
+                                    )
+                                ),
+                              ),
+
+
+                            ),
+                          ),
+                        ),
+                        AbsorbPointer(
+                          absorbing: absorbPointer,
+
+                          child: Container(
+                            width: width,
+                            //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                            margin: EdgeInsets.fromLTRB(5, 10, 5, 5),
+                            //color: Colors.purple,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Opacity(
+                                  opacity: opacity,
+                                  child: Container(
+                                    //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                                    margin: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15)
+                                    ),
+                                    width: width/2.5,
+                                    height: height/15,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                          )
+                                      ),
+                                    ),
+
+
+                                  ),
+                                ),
+                                Opacity(
+                                  opacity: opacity,
+                                  child: Container(
+                                    //padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                                    margin: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(15)
+                                    ),
+                                    width: width/2.5,
+                                    height: height/15,
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                          )
+                                      ),
+                                    ),
+
+
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        AbsorbPointer(
+                          absorbing: absorbPointer,
+
+                          child: Opacity(
+                            opacity: opacity,
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                              margin: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15)
+                              ),
+                              width: width,
+                              height: height/15,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  // Padding(padding: EdgeInsets.only(left: 20,right: 20)),
+                                  Icon(Icons.notifications_active , size: 25,color: Colors.purpleAccent,),
+                                  SizedBox(width: 15,),
+                                  Text("Notification"),
+                                  SizedBox(width: 70,),
+                                  Switch(value:notification , onChanged:(value) {
+                                    setState(() {
+                                      notification=!notification;
+                                    });
+                                  })
+                                ],
+                              ),
+
+
+
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 40,),
+                        Container(
+                          width: width/2.5,
+                          margin: EdgeInsets.only(left: 20,right: 20),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(40),
+                              color: Colors.purpleAccent
+                          ),
+                          child: ElevatedButton(
+                              onPressed: () {
+                                NotificationService().showNotification(title: "Iam batool",body: "Iam notification");
+                                setState(() {
+                                  editAndSave=!editAndSave;
+                                  absorbPointer=!absorbPointer;
+                                  editAndSave?opacity=1.0:opacity=0.5;
+                                });
+
+                              },
+                              child: editAndSave?Text("Save",style:TextStyle(color: Colors.white,fontSize:15),):Text("Edit",style:TextStyle(color: Colors.white,fontSize:15),),
+                              style:ElevatedButton.styleFrom(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0.0,
+                              )
+                          ),
+                        ),
+
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
