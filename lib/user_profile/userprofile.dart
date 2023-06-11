@@ -1,13 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_native_timezone/flutter_native_timezone.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
-
 import '../home/BottomNavBar.dart';
 import 'notification_service.dart';
 
@@ -20,7 +12,7 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
   double opacity=0.5;//need edit
-  bool notification=false;
+  static bool notification=false;
   bool absorbPointer=true;//need edit
   bool editAndSave=false;//false=edit true=save
 
@@ -56,21 +48,6 @@ class _UserProfileState extends State<UserProfile> {
             child: SingleChildScrollView(
               child: Column (
                 children: [
-               /*   Center(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 20 , bottom: 20),
-                      width: 110,
-                      height: 110,
-                      decoration: BoxDecoration(
-                        //  color: Colors.orange,
-                          borderRadius: BorderRadius.all(Radius.circular(80)),
-                          // border: Border.all(color: Colors.purpleAccent, width: 3),
-                          image: DecorationImage(
-                              image: AssetImage("assets/group.png")
-                          )
-                      ),
-                    ),
-                  ),*/
                   Container(
                     width: width/1.1,
                     height: height/1.4,
@@ -280,10 +257,44 @@ class _UserProfileState extends State<UserProfile> {
                                   SizedBox(width: 15,),
                                   Text("Notification"),
                                   SizedBox(width: 70,),
-                                  Switch(value:notification , onChanged:(value) {
-                                    setState(() {
+                                  Switch(value:notification ,
+                                      onChanged:(value) {
+                               notification=value;
+                               showDialog(
+                                 context: context,
+                                 builder: (BuildContext context) {
+                                   return AlertDialog(
+                                     title: Text("Allow Notification"),
+                                     content: Text("Let the app send you a notification if\nyou do not open the app for 24 hours"),
+                                     actions: <Widget>[
+                                       TextButton(
+                                         child: Text("Cancel"),
+                                         onPressed: () {
+                                           setState(() {
+                                             notification=false;
+                                           });
+                                           Navigator.of(context).pop();
+                                         },
+                                       ),
+                                       TextButton(
+                                         child: Text("OK"),
+                                         onPressed: () {
+                                           setState(() {
+                                             notification=true;
+                                           });
+                                           NotificationService().showNotification(title: "Iam batool",body: "Iam notification");
+                                           Navigator.of(context).pop();
+                                         },
+                                       ),
+                                     ],
+                                   );
+
+                                 },
+
+                               );
+                                   /* setState(() {
                                       notification=!notification;
-                                    });
+                                    });*/
                                   })
                                 ],
                               ),
@@ -303,7 +314,6 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                           child: ElevatedButton(
                               onPressed: () {
-                                NotificationService().showNotification(title: "Iam batool",body: "Iam notification");
                                 setState(() {
                                   editAndSave=!editAndSave;
                                   absorbPointer=!absorbPointer;

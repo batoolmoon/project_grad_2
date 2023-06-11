@@ -41,7 +41,7 @@ class _DashBordState extends State<DashBord> {
         leading: Container(),
         actions: [
           IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>UserProfile()));}
-              , icon: Icon(Icons.person))
+              , icon: Icon(Icons.logout))
         ],
         flexibleSpace:Container(
           decoration: const BoxDecoration(
