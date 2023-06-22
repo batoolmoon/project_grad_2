@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import '../utils.dart';
 
-
 class dashbord4 extends StatefulWidget {
   const dashbord4({Key? key}) : super(key: key);
 
@@ -88,10 +87,10 @@ class _dashbord4State extends State<dashbord4> {
                      Container(
                        decoration: BoxDecoration(
                          borderRadius: BorderRadius.circular(40),
-                         color: Colors.purpleAccent
+                         color: Colors.purpleAccent,
                        ),
                        child: ElevatedButton(
-                         onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn())); },
+                         onPressed: () { Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn2())); },
                          child: Text("Go to Log-in",style:TextStyle(color: Colors.white,fontSize:15),),
                            style:ElevatedButton.styleFrom(
                              backgroundColor: Colors.transparent,
@@ -99,19 +98,7 @@ class _dashbord4State extends State<dashbord4> {
                            )
                        ),
                      ),
-                     /* GestureDetector(
-                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn()));},
-                        child: Container(
-                          // buttonXmo (10:61)
-                          width: 60,
-                          height: 60,
-                          child: Image.asset(
-                            'assets/button-RDF.png',
-                            width: 60,
-                            height: 60,
-                          ),
-                        ),
-                      ),*/
+
                     ],
                   ),
                 ),

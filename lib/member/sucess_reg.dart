@@ -9,6 +9,7 @@ class SucessReg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       width: double.infinity,
       child: Container(
         padding: EdgeInsets.fromLTRB(30, 80, 30, 40),

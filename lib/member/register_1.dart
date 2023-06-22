@@ -13,12 +13,13 @@ class register1 extends StatefulWidget {
 }
 
 class _register1State extends State<register1> {
-  TextEditingController _firstName=TextEditingController();
-  TextEditingController _lasetName=TextEditingController();
-  TextEditingController _email=TextEditingController();
-  TextEditingController _password=TextEditingController();
-  final auth= FirebaseAuth.instance; //fire base object
-  bool secure=true;
+  final _formfield = GlobalKey<FormState>();
+  TextEditingController _firstName = TextEditingController();
+  TextEditingController _lasetName = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  final auth = FirebaseAuth.instance; //fire base object
+  bool secure = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,73 +30,121 @@ class _register1State extends State<register1> {
             //the circular border //base
             padding: EdgeInsets.fromLTRB(30, 40, 30, 40),
             width: double.infinity,
-            decoration: BoxDecoration (
+            decoration: BoxDecoration(
               // color: Colors.red,
               color: Colors.white,
               borderRadius: BorderRadius.circular(40),
             ),
-            child: SingleChildScrollView(
-              child: Column(// start item
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // color:Colors.green,
-                    margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 0, 10, 10),
-                          child: Text(
-                            'Hey there,',
-                            style: SafeGoogleFont (
+            child: Form(
+              key: _formfield,
+              child: SingleChildScrollView(
+                child: Column(
+                  // start item
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      // color:Colors.green,
+                      margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 0, 10, 10),
+                            child: Text(
+                              'Hey there,',
+                              style: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5, //2
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Create an Account',
+                            style: SafeGoogleFont(
                               'Poppins',
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5, //2
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              height: 1.5,
                               color: Colors.black,
                             ),
                           ),
-                        ),
-                        Text(
-                          'Create an Account',
-                          style: SafeGoogleFont (
-                            'Poppins',
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            height:1.5,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  Container(
-                    // color: Colors.red,
-                    margin: EdgeInsets.fromLTRB(0, 20, 0, 147),
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                          width: double.infinity,
-                          height: 48,
-                          decoration: BoxDecoration (
-                            border: Border.all(color: Colors.white),
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(20),
+                    Container(
+                      // color: Colors.red,
+                      margin: EdgeInsets.fromLTRB(0, 20, 0, 147),
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                            width: double.infinity,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              color: Colors.grey[100],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                                width: 89,
+                                height: double.infinity,
+                                child: Center(
+                                  child: TextFormField(
+                                    controller: _firstName,
+                                    decoration: InputDecoration(
+                                      hintText: "First Name",
+                                      hintStyle: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        height: 4.5,
+                                        color: Color(0xffaca4a5),
+                                      ),
+                                      prefixIcon: Icon(Icons.person_outline),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                          BorderRadius.circular(15),
+                                          borderSide: BorderSide.none),
+                                    ),
+                                    validator: (value) {
+                                      bool firstNameValid =
+                                      RegExp((r'^[a-z A_Z]+$'))
+                                          .hasMatch(value!);
+
+                                      if (value.isEmpty) {
+                                        return "Enter First Name";
+                                      } else if (_firstName.text.length > 14) {
+                                        return "First Name length should be less than 14 characters";
+                                      }
+                                    },
+                                    textAlign: TextAlign.start,
+                                    textAlignVertical: TextAlignVertical.center,
+                                  ),
+                                )),
                           ),
-                          child: Container(
-                              width: 89,
-                              height: double.infinity,
-                              child: Center(
-                                child: TextField(
-                                  controller: _firstName,
-                                  decoration:InputDecoration(
-                                    hintText: "First Name",
-                                    hintStyle:SafeGoogleFont (
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                            width: double.infinity,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              color: Colors.grey[100],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                                width: 89,
+                                height: double.infinity,
+                                child: TextFormField(
+                                  controller: _lasetName,
+                                  decoration: InputDecoration(
+                                    hintText: "Last Name",
+                                    hintStyle: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 12,
                                       fontWeight: FontWeight.w400,
@@ -105,222 +154,247 @@ class _register1State extends State<register1> {
                                     prefixIcon: Icon(Icons.person_outline),
                                     border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(15),
-                                        borderSide: BorderSide.none
-                                    ),
-                                  ) ,
+                                        borderSide: BorderSide.none),
+                                  ),
+                                  validator: (value) {
+                                    bool lastNameValid =
+                                    RegExp((r'^[a-z A_Z]+$'))
+                                        .hasMatch(value!);
+
+                                    if (value.isEmpty) {
+                                      return "Enter Last Name";
+                                    } else if (_lasetName.text.length > 14) {
+                                      return "Last Name length should be less than 14 characters";
+                                    }
+                                  },
                                   textAlign: TextAlign.start,
                                   textAlignVertical: TextAlignVertical.center,
-                                ),
-                              )
+                                )),
                           ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                          width: double.infinity,
-                          height: 48,
-                          decoration: BoxDecoration (
-                            border: Border.all(color: Colors.white),
-                            color:  Colors.grey[100],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                              width: 89,
-                              height: double.infinity,
-                              child: TextField(
-                                controller: _lasetName,
-                                decoration:InputDecoration(
-                                  hintText: "Last Name",
-                                  hintStyle:SafeGoogleFont (
-                                    'Poppins',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    height: 4.5,
-                                    color: Color(0xffaca4a5),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                            width: double.infinity,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              color: Colors.grey[100],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                                width: 89,
+                                height: double.infinity,
+                                child: TextFormField(
+                                  controller: _email,
+                                  decoration: InputDecoration(
+                                    hintText: "Email",
+                                    hintStyle: SafeGoogleFont(
+                                      'Poppins',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      height: 4.5,
+                                      color: Color(0xffaca4a5),
+                                    ),
+                                    prefixIcon: Icon(Icons.email_outlined),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: BorderSide.none),
                                   ),
-                                  prefixIcon: Icon(Icons.person_outline),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide.none
-                                  ),
-                                ) ,
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.center,
-                              )
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                          width: double.infinity,
-                          height: 48,
-                          decoration: BoxDecoration (
-                            border: Border.all(color:Colors.white),
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                              width: 89,
-                              height: double.infinity,
-                              child: TextField(
-                                controller: _email,
-                                decoration:InputDecoration(
-                                  hintText: "Email",
-                                  hintStyle:SafeGoogleFont (
-                                    'Poppins',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    height: 4.5,
-                                    color: Color(0xffaca4a5),
-                                  ),
-                                  prefixIcon: Icon(Icons.email_outlined),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide.none
-                                  ),
-                                ) ,
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.center,
-                              )
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
-                          width: double.infinity,
-                          height: 48,
-                          decoration: BoxDecoration (
-                            border: Border.all(color: Colors.white),
-                            color: Colors.grey[100],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Container(
-                              width: 89,
-                              height: double.infinity,
-                              child: TextField(
-                                obscureText: secure,
-                                controller: _password,
-                                decoration:InputDecoration(
-                                  hintText: "Password",
-                                  hintStyle:SafeGoogleFont (
-                                    'Poppins',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    height: 4.5,
-                                    color: Color(0xffaca4a5),
-                                  ),
+                                  validator: (value) {
+                                    bool emailVaild = RegExp(
+                                        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                        .hasMatch(value!);
 
-                                  prefixIcon: Icon(Icons.lock_outline),
-                                  suffixIcon: GestureDetector(
-                                      onTap: (){
-                                        setState(() {
-                                          secure=!secure;
-                                        });
-                                      },
-                                      child: secure?Icon(Icons.visibility_off_outlined):Icon(Icons.visibility_outlined)),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(15),
-                                      borderSide: BorderSide.none
-                                  ),
-                                ) ,
-                                textAlign: TextAlign.start,
-                                textAlignVertical: TextAlignVertical.center,
-                              )
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () async{
-                      setState(() {
-                        try{
-                          var AppUser=auth.createUserWithEmailAndPassword(email: _email.text.toString(),
-                              password: _password.text.toString());
-                          print("My Email");
-                          print(_email.text.toString());
-                          print("My pass");
-                          print(_password.text.toString());
+                                    if (value.isEmpty) {
+                                      return "Enter your Email";
+                                    }
 
-                          // if the operation done the app will move to next page
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>register2(_email.text.toString(),_password.text.toString(),_firstName.text.toString(),_lasetName.text.toString())));
-                        }
-                        catch(e){print(" my erorr $e");}
-                      });
-                    },
-                    child: Container(
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                      width: double.infinity,
-                      height: 60,
-                      decoration: BoxDecoration (
-                        borderRadius: BorderRadius.circular(99),
-                        gradient: LinearGradient (
-                          begin: Alignment(1, 1),
-                          end: Alignment(-1.479, -1.615),
-                          colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-                          stops: <double>[0, 1],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x4c95adfe),
-                            offset: Offset(0, 2),
-                            blurRadius: 5,
+                                    if (!emailVaild) {
+                                      return "Enter valid";
+                                    }
+                                  },
+                                  textAlign: TextAlign.start,
+                                  textAlignVertical: TextAlignVertical.center,
+                                )),
+                          ),
+                          Container(
+                            margin: EdgeInsets.fromLTRB(0, 10, 0, 5),
+                            width: double.infinity,
+                            height: 48,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              color: Colors.grey[100],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Container(
+                                width: 89,
+                                height: double.infinity,
+                                child: TextFormField(
+                                  obscureText: secure,
+                                  controller: _password,
+                                  decoration: InputDecoration(
+                                    hintText: "Password",
+                                    hintStyle: SafeGoogleFont(
+                                      'Poppins',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      height: 4.5,
+                                      color: Color(0xffaca4a5),
+                                    ),
+                                    prefixIcon: Icon(Icons.lock_outline),
+                                    suffixIcon: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            secure = !secure;
+                                          });
+                                        },
+                                        child: secure
+                                            ? Icon(
+                                            Icons.visibility_off_outlined)
+                                            : Icon(Icons.visibility_outlined)),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(15),
+                                        borderSide: BorderSide.none),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Enter Password";
+                                    } else if (_password.text.length < 6) {
+                                      return "password length should be more than 6 characters";
+                                    }
+                                  },
+                                  textAlign: TextAlign.start,
+                                  textAlignVertical: TextAlignVertical.center,
+                                )),
                           ),
                         ],
                       ),
-                      child: Center(
-                        child: Text(
-                          'Register',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont (
-                            'Poppins',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            height: 1.5,
-                            color: Colors.white,
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        if (_formfield.currentState!.validate()) {
+                          print("Data Added Successfully");
+
+                          setState(() {
+                            try {
+                              print("My Email");
+                              print(_email.text.toString());
+                              print("My pass");
+                              print(_password.text.toString());
+
+                              // if the operation done the app will move to next page
+                               Navigator.push(
+                                  context,
+                              MaterialPageRoute(
+                                  builder: (context) => register2(
+                                      _email.text.toString(),
+                                      _password.text.toString(),
+                                      _firstName.text.toString(),
+                                      _lasetName.text.toString())));
+
+
+                              //)
+
+                            } catch (e) {
+                              print(" my erorr $e");
+                            }
+                          });
+                        }
+
+                      },
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        width: double.infinity,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(99),
+                          gradient: LinearGradient(
+                            begin: Alignment(1, 1),
+                            end: Alignment(-1.479, -1.615),
+                            colors: <Color>[
+                              Color(0xff92a3fd),
+                              Color(0xff9dceff)
+                            ],
+                            stops: <double>[0, 1],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x4c95adfe),
+                              offset: Offset(0, 2),
+                              blurRadius: 5,
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Register',
+                            textAlign: TextAlign.center,
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                              height: 1.5,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    child: Row(
-                    children: [
-                      SizedBox(
-                        child: Divider(color:Colors.black ,),
-                        width:150,
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            child: Divider(
+                              color: Colors.black,
+                            ),
+                            width: 120,
+                          ),
+                          Text("  Or  "),
+                          SizedBox(
+                            child: Divider(
+                              color: Colors.black,
+                            ),
+                            width: 120,
+                          ),
+                        ],
                       ),
-                      Text("  Or  "),
-                      SizedBox(
-                        child: Divider(color:Colors.black ,),
-                        width:150,
-                      ),
-                    ],
-                  ),),
-                  Container(
-                    width: MediaQuery.of(context).size.width/1.5,
-                    height:MediaQuery.of(context).size.height/25,
-                  //color: Colors.grey,
-                    child: Row(
-                      children: [
-                        Text(" Already have an account?" ,style:SafeGoogleFont (
-                          'Poppins',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5,
-                          color: Colors.black,
-                        ), ),
-                        TextButton(onPressed: (){
-                          Navigator.pop(context);
-                        }, child: Text("Login",style: SafeGoogleFont (
-                          'Poppins',
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          height: 1,
-                          color: Colors.purpleAccent,
-                        ),))
-                      ],
                     ),
-                  ),
-
-                ],
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      height: MediaQuery.of(context).size.height / 25,
+                      //color: Colors.grey,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            " Already have an account?",
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5,
+                              color: Colors.black,
+                            ),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text(
+                                "Login",
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1,
+                                  color: Colors.purpleAccent,
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

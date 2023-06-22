@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Fitnesscore/introduction/dashbord1.dart';
@@ -33,3 +34,4 @@ class _IntroSliderState extends State<IntroSlider> {
     );
   }
 }
+*/

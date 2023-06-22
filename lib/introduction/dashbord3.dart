@@ -1,3 +1,4 @@
+import 'package:Fitnesscore/introduction/dashbord4.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '../utils.dart';
@@ -79,13 +80,16 @@ class _dashbord1State extends State<dashbord3> {
                           ],
                         ),
                       ),
-                      Container(
-                        width: 60,
-                        height: 60,
-                        child: Image.asset(
-                          'assets/button.png',
+                      GestureDetector(
+                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>dashbord4()));},
+                        child: Container(
                           width: 60,
                           height: 60,
+                          child: Image.asset(
+                            'assets/button.png',
+                            width: 60,
+                            height: 60,
+                          ),
                         ),
                       ),
                     ],

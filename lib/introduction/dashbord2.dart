@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '../utils.dart';
+import 'dashbord3.dart';
 
 
 class dashbord2 extends StatefulWidget {
@@ -80,14 +81,17 @@ class _dashbord2State extends State<dashbord2> {
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                        width: 60,
-                        height: 60,
-                        child: Image.asset(
-                          'assets/button-6fo.png',
+                      GestureDetector(
+                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>dashbord3()));},
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
                           width: 60,
                           height: 60,
+                          child: Image.asset(
+                            'assets/button-6fo.png',
+                            width: 60,
+                            height: 60,
+                          ),
                         ),
                       ),
                     ],

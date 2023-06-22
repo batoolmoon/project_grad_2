@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tflite/tflite.dart';
 
@@ -18,17 +17,18 @@ class _TfliteModelState extends State<TfliteModel> {
   late File _image;
   late List _results;
   bool imageSelect = false;
-  late var caloriesResult;
+  late String caloriesResult="";
   @override
   void initState() {
     super.initState();
     loadModel();
   }
 
-  getSharedData() async {
+  getSharedData()  async {
    SharedPreferences prefs = await SharedPreferences.getInstance();
    setState(() {
-     caloriesResult=prefs.setString("calories", caloriesResult);
+     caloriesResult=prefs.setString("calories", caloriesResult) as String;
+
    });
 
   }
@@ -80,7 +80,7 @@ class _TfliteModelState extends State<TfliteModel> {
       // Use the picked image
       File imageFile = File(pickedImage.path);
       // Handle or display the image as required
-      imageClassification(imageFile);
+      imageDetection(imageFile);
     }
   }
 
@@ -92,12 +92,12 @@ class _TfliteModelState extends State<TfliteModel> {
       // Use the picked image
       File imageFile = File(pickedImage.path);
       // Handle or display the image as required
-      imageClassification(imageFile);
+      imageDetection(imageFile);
     }
   }
 
 
-  Future imageClassification(File image) async {
+  Future imageDetection(File image) async {
     final List? recognitions = await Tflite.runModelOnImage(
       path: image.path,
       numResults: 6,
@@ -131,9 +131,11 @@ class _TfliteModelState extends State<TfliteModel> {
       ),
       body: ListView(
         children: [
-          (imageSelect) ? Container(
-            margin: const EdgeInsets.all(10),
-            child: Image.file(_image),
+          (imageSelect) ? Center(
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              child: Image.file(_image),
+            ),
           ) : Container(
             margin: const EdgeInsets.all(10),
             child: const Opacity(
@@ -164,7 +166,7 @@ class _TfliteModelState extends State<TfliteModel> {
 
           imageSelect?  Container(
             height: 40,
-            margin: EdgeInsets.only(left: 80, right: 80),
+            margin: EdgeInsets.only(left: 80, right: 80,top: 20),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purpleAccent
@@ -172,7 +174,9 @@ class _TfliteModelState extends State<TfliteModel> {
               onPressed: () {
                 _results.map((result) {
                 caloriesResult=result["label"];
+                print("caloriesResult $caloriesResult" );
               });
+                print("caloriesResult $caloriesResult" );
               },
               child: Text('Save Calories Result'),
             ),

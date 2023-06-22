@@ -5,33 +5,72 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 
 class DailyTrack extends StatefulWidget {
-  const DailyTrack({Key? key}) : super(key: key);
+ DailyTrack ({Key? key}) : super(key: key);
+
 
   @override
   _DailyTrackState createState() => _DailyTrackState();
+
 }
 
 class _DailyTrackState extends State<DailyTrack> {
-  String Steps="";
-  late double Water=0;
-  String Calories="";
+ late double Water=0.0;
+ late int Steps=0;
+  late int CaloriesFood=0;
+  late double CaloriesBurn=0;
+  late double bmi=0.0;
+  late double trackCalories=0.0;
 
 
 @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    getSharedData();
+    getSharedData().then((result) {
+      setBmi();
+    });
+   // setBmi();
   }
 
 //inorder to track
   getSharedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-     // Steps= prefs.getString("steps")!;
-      Water=prefs.getDouble( "water")!;
+      Steps+= int.parse(prefs.getString("steps")!);
+      Water+=prefs.getDouble( "water")!;
+      bmi=prefs.getDouble( "bmiScore")!;
+      print("Water $Water");
+      print("Steps $Steps");
+      print("bmi $bmi");
+     // CaloriesFood=int.parse(prefs.getString("calories"));
+      CaloriesBurn=prefs.getDouble( "caloriesBurn")!;
+      print("Water $Water");
+      print("Steps $Steps");
+      print("bmi $bmi");
+      print ("CaloriesFood $CaloriesFood");
+      print("CaloriesBurn $CaloriesBurn");
+
     });
   }
+
+  void setBmi(){
+
+    if(bmi>30){ //Obese
+     trackCalories= 1000;
+    }
+
+    else if(bmi >= 25){ //OverWeight
+      trackCalories= 1300;
+    }
+    else if(bmi >= 18.5){ //Noraml
+      trackCalories= 2000;
+    }
+  else{ //UnderWeight
+      trackCalories=  2500;
+    }
+  }
+
+
+
   Widget _circleProgress() {
     return SizedBox(
       width: 160,
@@ -76,7 +115,7 @@ class _DailyTrackState extends State<DailyTrack> {
                         ),
                       ),
                       Text(
-                        '1,112',
+                        '${trackCalories-CaloriesFood}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 22,
@@ -90,6 +129,7 @@ class _DailyTrackState extends State<DailyTrack> {
                           fontSize: 12,
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -105,9 +145,9 @@ class _DailyTrackState extends State<DailyTrack> {
     return Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _macronutrientsTile(title: 'Steps', percentValue: 0.4, amountInGram: '10000 steps/day'),
-          _macronutrientsTile(title: 'Fat', percentValue: 0.2, amountInGram: '14/85g'),
-          _macronutrientsTile(title: 'Water', percentValue: Water/10, amountInGram: '4 cups/day')
+          _macronutrientsTile(title: 'Steps', percentValue: Steps/10000, amountInGram: '100000 steps/day'),
+          _macronutrientsTile(title: 'Fat', percentValue: CaloriesBurn/1000, amountInGram: '14/85g'),
+          _macronutrientsTile(title: 'Water', percentValue: Water, amountInGram: '4 cups/day'),
 
         ]
     );
@@ -163,7 +203,7 @@ class _DailyTrackState extends State<DailyTrack> {
       aspectRatio: 1.5,
       child: Container(
         margin:EdgeInsets.fromLTRB(18, 20, 18,0) ,
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
           gradient: LinearGradient (
             begin: Alignment(1, 1),

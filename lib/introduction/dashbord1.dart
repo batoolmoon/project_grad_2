@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import '../utils.dart';
+import 'dashbord2.dart';
 class dashbord1 extends StatefulWidget {
   const dashbord1({Key? key}) : super(key: key);
 
@@ -75,13 +76,16 @@ double height=MediaQuery.of(context).size.height;
                           ],
                         ),
                       ),
-                      Container(
-                        width: 60,
-                        height: 60,
-                        child: Image.asset(
-                          'assets/button-z8D.png',
+                      GestureDetector(
+                        onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>dashbord2()));},
+                        child: Container(
                           width: 60,
                           height: 60,
+                          child: Image.asset(
+                            'assets/button-z8D.png',
+                            width: 60,
+                            height: 60,
+                          ),
                         ),
                       ),
                     ],

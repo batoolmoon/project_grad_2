@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:Fitnesscore/introduction/dashbord1.dart';
 import 'package:flutter/material.dart';
 import 'intro_slider.dart';
 
@@ -63,7 +64,7 @@ class _WelcomeState extends State<Welcome> with SingleTickerProviderStateMixin{
           } else {
             _start = _start - 1;
             if(_start == 0){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>IntroSlider()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>dashbord1()));
             }
             if(_start == 1){
               _controller.forward();
