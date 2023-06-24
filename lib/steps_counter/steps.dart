@@ -158,7 +158,7 @@ class _StepsState extends State<Steps> {
                         ),
                       ],
                     ),
-                     CircularPercentIndicator(
+                    CircularPercentIndicator(
                       radius: 80.0,
                       lineWidth: 10.0,
                       percent:double.parse(steps)/10000 ,
@@ -201,10 +201,10 @@ class _StepsState extends State<Steps> {
                       child: Center(
                         child: Column(
                           children: [
-                       Image.network(
-                           "https://icon-library.com/images/burn-calories-icon/burn-calories-icon-14.jpg",
-                       width: 80,
-                       height:80,),
+                            Image.network(
+                              "https://icon-library.com/images/burn-calories-icon/burn-calories-icon-14.jpg",
+                              width: 80,
+                              height:80,),
                             SizedBox(height: 10,),
                             Text(
                               "${caloriesCount().toStringAsFixed(2)}",
@@ -250,76 +250,76 @@ class _StepsState extends State<Steps> {
                 ),
               ),
               Container(
-                    margin: EdgeInsets.all(20),
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height/7,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient (
-                            begin: Alignment(1, 1),
-                            end: Alignment(-1.479, -1.615),
-                            colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
-                            stops: <double>[0, 1],
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(5.0,5.0),
-                                blurRadius: 5
-                            )
-                          ]
-                      ),
-                      child: Row(
-                        children: [
-                          Image.asset("assets/water.png",
-                            width: 80,
-                            height: 100,),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("TAKEN WATER" , style: TextStyle(color: Colors.white , fontSize: 25 , fontWeight: FontWeight.bold),),
-                              SizedBox(height: 10,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  ElevatedButton(onPressed: (){
-                                    setState(() {
-                                      waterValue+=0.25;
-                                      getSharedData();
-                                    });
-                                  }, child: Text("250 ML"),
-                                    style:ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.purpleAccent
-                                    ) ,),
-                                  SizedBox(width: 4,),
-                                  ElevatedButton(onPressed: (){
-                                    setState(() {
-                                      waterValue+=0.5;
-                                      getSharedData();
-                                    });
-                                  }, child: Text("500 ML"),
-                                    style:ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.purpleAccent
-                                    ) ,),
-                                  SizedBox(width: 4,),
-                                  ElevatedButton(onPressed: (){
-                                    setState(() {
-                                      waterValue+=0.99;
-                                      getSharedData();
-
-
-                                    });
-                                  }, child: Text(" 1 L"),
-                                    style:ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.purpleAccent
-                                    ) ,)
-
-                                ],)
-                            ],
-                          )
-                        ],
-                      ),
+                margin: EdgeInsets.all(20),
+                width: double.infinity,
+                height: MediaQuery.of(context).size.height/7,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient (
+                      begin: Alignment(1, 1),
+                      end: Alignment(-1.479, -1.615),
+                      colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
+                      stops: <double>[0, 1],
                     ),
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey,
+                          offset: Offset(5.0,5.0),
+                          blurRadius: 5
+                      )
+                    ]
+                ),
+                child: Row(
+                  children: [
+                    Image.asset("assets/water.png",
+                      width: 80,
+                      height: 100,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("TAKEN WATER" , style: TextStyle(color: Colors.white , fontSize: 25 , fontWeight: FontWeight.bold),),
+                        SizedBox(height: 10,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ElevatedButton(onPressed: (){
+                              setState(() {
+                                waterValue+=0.25;
+                                getSharedData();
+                              });
+                            }, child: Text("250 ML"),
+                              style:ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.purpleAccent
+                              ) ,),
+                            SizedBox(width: 4,),
+                            ElevatedButton(onPressed: (){
+                              setState(() {
+                                waterValue+=0.5;
+                                getSharedData();
+                              });
+                            }, child: Text("500 ML"),
+                              style:ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.purpleAccent
+                              ) ,),
+                            SizedBox(width: 4,),
+                            ElevatedButton(onPressed: (){
+                              setState(() {
+                                waterValue+=0.99;
+                                getSharedData();
+
+
+                              });
+                            }, child: Text(" 1 L"),
+                              style:ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.purpleAccent
+                              ) ,)
+
+                          ],)
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -327,7 +327,6 @@ class _StepsState extends State<Steps> {
     );
   }
 }
-
 
 
 

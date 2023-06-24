@@ -39,6 +39,8 @@ class _register2State extends State<register2> {
   String gender = "Male";
   bool male = true, female = false;
   late double _bmiScore;
+  ///////////////////////////
+  final  CollectionReference _regDB= FirebaseFirestore.instance.collection("fitnessCore");
 
 
 
@@ -51,36 +53,16 @@ class _register2State extends State<register2> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       prefs.setDouble("bmiScore", _bmiScore);
+      prefs.setString("email", email);
+      prefs.setString("password", password);
+      prefs.setString("firstName", firstName);
+      prefs.setString("lastName", lastName);
     });
   }
 
-/*// Register user with Firebase
-  void _registerUser() async {
-    try {
-      UserCredential userCredential =
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-
-     Navigator.push(context, MaterialPageRoute(builder: (context)=>DashBord()));
-    } on FirebaseAuthException catch (e) {
-      // Registration failed, handle the error
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-      } else {
-        print('Error: ${e.code}');
-      }
-    } catch (e) {
-      print('Error: $e');
-    }
-  }*/
 
 
-  // Register a new user with Firebase Authentication
-  Future<void> registerUser(String email, String password) async {
+   registerUser(String email, String password) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -97,22 +79,25 @@ class _register2State extends State<register2> {
     }
   }
 
+
+
 // Save user details to Firestore
-  Future<void> saveUserData(String userId, String email) async {
+    saveUserData(String userId, String email) async {
     try {
-      await FirebaseFirestore.instance.collection("fitnesscore_users").doc(userId).set({
-        "age":age.text.toString(),
+      await FirebaseFirestore.instance.collection("fitnessCore").add({
         "email":email,
-        "firstname":firstName,
+        "firstName":firstName,
         "gender":gender.toString(),
-        "hight":height.text.toString(),
-        "lastname":lastName,
+        "height":height.text.toString(),
+        "lastName":lastName,
         "password":password,
-        "weight":weight.text.toString()
+        "weight":weight.text.toString(),
+        "bmi":_bmiScore.toString()
       });
       print('User data saved successfully');
     } catch (e) {
       print('Error saving user data: $e');
+      print("not push");
       // Handle error
     }
   }

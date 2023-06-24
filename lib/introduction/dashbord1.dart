@@ -35,18 +35,17 @@ double height=MediaQuery.of(context).size.height;
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(30, 109, 30, 30),
+                  padding: EdgeInsets.fromLTRB(30, 90, 30,100),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 3, 80),
+                        margin: EdgeInsets.fromLTRB(0, 0, 3, 40),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              margin: EdgeInsets.fromLTRB(0, 0, 0, 15),
                               child: Text(
                                 'Track Your Goal',
                                 style: SafeGoogleFont (

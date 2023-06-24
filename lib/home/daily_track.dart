@@ -31,25 +31,24 @@ class _DailyTrackState extends State<DailyTrack> {
    // setBmi();
   }
 
+
+
 //inorder to track
   getSharedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      Steps+= int.parse(prefs.getString("steps")!);
-      Water+=prefs.getDouble( "water")!;
-      bmi=prefs.getDouble( "bmiScore")!;
-      print("Water $Water");
-      print("Steps $Steps");
-      print("bmi $bmi");
-     // CaloriesFood=int.parse(prefs.getString("calories"));
-      CaloriesBurn=prefs.getDouble( "caloriesBurn")!;
-      print("Water $Water");
-      print("Steps $Steps");
-      print("bmi $bmi");
-      print ("CaloriesFood $CaloriesFood");
-      print("CaloriesBurn $CaloriesBurn");
 
-    });
+      // Retrieve and update the values as before
+      setState(() {
+        Steps = int.parse(prefs.getString("steps")!);
+        Water += prefs.getDouble("water")!;
+        bmi = prefs.getDouble("bmiScore")!;
+        CaloriesBurn = prefs.getDouble("caloriesBurn")!;
+      });
+
+    print("Water $Water");
+    print("Steps $Steps");
+    print("bmi $bmi");
+    print("CaloriesBurn $CaloriesBurn");
   }
 
   void setBmi(){

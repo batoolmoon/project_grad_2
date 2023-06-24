@@ -5,6 +5,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/material.dart';
 
 import '../food_recipes/foodRecipes.dart';
+import '../steps2.dart';
 import '../user_profile/userprofile.dart';
 import 'dash_bord.dart';
 

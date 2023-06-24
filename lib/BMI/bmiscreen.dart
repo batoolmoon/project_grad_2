@@ -43,77 +43,83 @@ class _bmiscreenState extends State<bmiscreen> {
         title: Text("BMI Calculator"),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),bottomRight: Radius.circular(12))
-          ),
-          padding: EdgeInsets.all(12),
-          child:Card(
-            elevation: 12,
-            shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)
+        child: Center(
+          child: Container(
+            width: double.infinity,
+
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(12),bottomRight: Radius.circular(12))
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //select gender
-                GenderWidget(onChange: (genderVal){
-                  _gender=genderVal;
-                },
-                ),
-                HeightWidget(onChange: (heightVal){
-                     _height=heightVal;
-                },
-                ),
-          Row(
-            mainAxisAlignment:MainAxisAlignment.center,
-              children: [
-                AgeWidgetWidget(onChange: (ageVal ) {
-                  _age=ageVal;
-                }, title: "Age", initValue:30 , min: 0,max:100),
+            padding: EdgeInsets.all(12),
+            margin:EdgeInsets.only(top: 15) ,
+            child:Card(
+              elevation: 12,
+              shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 7,),
+                  //select gender
+                  GenderWidget(onChange: (genderVal){
+                    _gender=genderVal;
+                  },
+                  ),
+                  HeightWidget(onChange: (heightVal){
+                       _height=heightVal;
+                  },
+                  ),
+            Row(
+              mainAxisAlignment:MainAxisAlignment.center,
+                children: [
+                  AgeWidgetWidget(onChange: (ageVal ) {
+                    _age=ageVal;
+                  }, title: "Age", initValue:30 , min: 0,max:100),
 
-                  AgeWidgetWidget(onChange: (weightVal ) {
-                    _weight=weightVal;
-                  }, title: "Weight(Kg)", initValue:50 , min: 0,max:200)
+                    AgeWidgetWidget(onChange: (weightVal ) {
+                      _weight=weightVal;
+                    }, title: "Weight(Kg)", initValue:50 , min: 0,max:200)
 
-                ],),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 60),
-                  child: SwipeableButtonView(isFinished: _isFinished,
-                      onFinish: () async{
-                    await Navigator.push(context,
-                   PageTransition(child: ScoreScreen(
-                     bmiscore: _bmiScore,
-                     age: _age,
-                   ), type: PageTransitionType.fade));
-                        setState(() {
-                          _isFinished = false;
-                        });
-                      },
-                      onWaitingProcess: () {
-                    //calculator bmi
-                        calculatorBmi();
-                        Future.delayed(Duration(seconds: 1), () {
+                  ],),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 60),
+                    child: SwipeableButtonView(isFinished: _isFinished,
+                        onFinish: () async{
+                      await Navigator.push(context,
+                     PageTransition(child: ScoreScreen(
+                       bmiscore: _bmiScore,
+                       age: _age,
+                     ), type: PageTransitionType.fade));
                           setState(() {
-                            _isFinished = true;
+                            _isFinished = false;
                           });
-                        });
+                        },
+                        onWaitingProcess: () {
+                      //calculator bmi
+                          calculatorBmi();
+                          Future.delayed(Duration(seconds: 1), () {
+                            setState(() {
+                              _isFinished = true;
+                            });
+                          });
 
-                      },
-                      activeColor: Colors.blueAccent,
-                      buttonWidget: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.black,
-                      ),
-                      buttonText:"CALCULATE"),
-                ),
+                        },
+                        activeColor: Colors.blueAccent,
+                        buttonWidget: Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.black,
+                        ),
+                        buttonText:"CALCULATE"),
+                  ),
 
-              ],
+                ],
 
-            ),
+              ),
 
-          )
+            )
 
 
+          ),
         ),
       )
     );

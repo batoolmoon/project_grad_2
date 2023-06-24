@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../home/BottomNavBar.dart';
 import 'notification_service.dart';
 
@@ -16,7 +19,70 @@ class _UserProfileState extends State<UserProfile> {
   bool absorbPointer=true;//need edit
   bool editAndSave=false;//false=edit true=save
 
-    @override
+  late String Email="";
+  String Password="";
+  String FirstName="";
+  String LastName="";
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  TextEditingController _firstName = TextEditingController();
+  TextEditingController  _lastName = TextEditingController();
+
+   getUserDetails() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    print("uid $uid");
+    DocumentSnapshot doc = await FirebaseFirestore.instance.collection('fitnessCore').doc("qjPoYD5gjNxtV9lErjvu").get();
+    print(Email);
+    if(doc.exists) { // this will check availability of document
+     print("ok data ");
+     print(doc);
+    }else{
+     print("no data");
+    }
+    setState((){});
+  }
+
+  getSharedDataGet() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+
+      _email.text= prefs.getString("email")!;
+      _password.text=prefs.getString("password")!;
+      _firstName.text=prefs.getString("firstName")!;
+      _lastName.text=prefs.getString("lastName")!;
+    });
+  }
+
+  void updateData() async {
+    String uid = FirebaseAuth.instance.currentUser!.uid;
+    DocumentReference documentRef = FirebaseFirestore.instance.collection("fitnessCore").doc('qjPoYD5gjNxtV9lErjvu');
+    await documentRef.update({
+      'email': _email.text,
+      "password": _password.text,
+      'firstName': _firstName.text,
+      'lastName':_lastName.text
+    });
+  }
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getSharedDataGet();
+    getUserDetails();
+  }
+
+  getSharedDataSet() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      prefs.setString("email", _email.text);
+      prefs.setString("password", _password.text);
+      prefs.setString("firstName", _firstName.text);
+      prefs.setString("lastName", _lastName.text);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width=MediaQuery.of(context).size.width;
     double height=MediaQuery.of(context).size.height;
@@ -82,6 +148,7 @@ class _UserProfileState extends State<UserProfile> {
                                     width: width/2.5,
                                     height: height/15,
                                     child: TextFormField(
+                                      controller: _firstName,
                                       decoration: InputDecoration(
                                           prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
                                           border: OutlineInputBorder(
@@ -104,6 +171,7 @@ class _UserProfileState extends State<UserProfile> {
                                     width: width/2.5,
                                     height: height/15,
                                     child: TextFormField(
+                                      controller: _lastName,
                                       decoration: InputDecoration(
                                           prefixIcon:Icon(Icons.person , size: 25,color: Colors.purpleAccent,),
                                           border: OutlineInputBorder(
@@ -133,6 +201,7 @@ class _UserProfileState extends State<UserProfile> {
                               width: width,
                               height: height/15,
                               child: TextFormField(
+                                controller: _email,
                                 decoration: InputDecoration(
                                     prefixIcon:Icon(Icons.email_outlined , size: 25,color: Colors.purpleAccent,),
                                     border: OutlineInputBorder(
@@ -159,12 +228,14 @@ class _UserProfileState extends State<UserProfile> {
                               width: width,
                               height: height/15,
                               child: TextFormField(
+                                controller: _password,
                                 decoration: InputDecoration(
                                     prefixIcon:Icon(Icons.password , size: 25,color: Colors.purpleAccent,),
                                     border: OutlineInputBorder(
                                       borderSide: BorderSide.none,
                                     )
                                 ),
+
                               ),
 
 
@@ -257,6 +328,7 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                           child: ElevatedButton(
                               onPressed: () {
+                                getSharedDataSet();
                                 setState(() {
                                   editAndSave=!editAndSave;
                                   absorbPointer=!absorbPointer;

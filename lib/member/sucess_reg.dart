@@ -33,7 +33,7 @@ class SucessReg extends StatelessWidget {
                 ),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(50.5, 0, 51.5, 130),
+                margin: EdgeInsets.fromLTRB(50.5, 0, 51.5, 70),
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

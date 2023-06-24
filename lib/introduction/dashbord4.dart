@@ -40,13 +40,13 @@ class _dashbord4State extends State<dashbord4> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(30, 48, 30, 40),
+                  padding: EdgeInsets.fromLTRB(30, 30, 30, 30),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Container(
-                        margin: EdgeInsets.fromLTRB(0, 0, 15, 70),
+                        margin: EdgeInsets.fromLTRB(0, 0, 15, 50),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
