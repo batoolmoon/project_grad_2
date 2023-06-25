@@ -3,6 +3,7 @@ import 'package:Fitnesscore/member/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Fitnesscore/user_profile/userprofile.dart';
+import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../meals_ML/TfliteModel.dart';
 import 'BottomNavBar.dart';
@@ -64,15 +65,20 @@ class _DashBordState extends State<DashBord> {
                   height: MediaQuery.of(context).size.height/7,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(14),
-                    gradient: LinearGradient(
+                    gradient: LinearGradient (
                       begin: Alignment(1, 1),
                       end: Alignment(-1.479, -1.615),
-                      colors: <Color>[
-                        Color(0xffc58bf2),
-                        Color(0xffeea4ce)
-                      ],
+                      colors: <Color>[Color(0xff92a3fd), Color(0xff9dceff)],
                       stops: <double>[0, 1],
                     ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/frame-P97.png",width: 80,height: 80,),
+                      SizedBox(width: 10,),
+                      Text("The body achieves \nwhat the mind believes",style: TextStyle(fontWeight:FontWeight.w900 , color: Colors.white ,fontSize: 20),),
+                    ],
                   ),
                 ),
              DailyTrack(),
@@ -112,7 +118,7 @@ class _DashBordState extends State<DashBord> {
                             ),
                             margin: EdgeInsets.all(20),
                             width: double.infinity,
-                            height: MediaQuery.of(context).size.height/5,
+                            height: MediaQuery.of(context).size.height/7,
 
                           ),
                         ),

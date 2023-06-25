@@ -74,11 +74,11 @@ class _bmiscreenState extends State<bmiscreen> {
                 children: [
                   AgeWidgetWidget(onChange: (ageVal ) {
                     _age=ageVal;
-                  }, title: "Age", initValue:30 , min: 0,max:100),
+                  }, title: "Age", initValue:30 , min: 18,max:75),
 
                     AgeWidgetWidget(onChange: (weightVal ) {
                       _weight=weightVal;
-                    }, title: "Weight(Kg)", initValue:50 , min: 0,max:200)
+                    }, title: "Weight(Kg)", initValue:50 , min: 40,max:200)
 
                   ],),
                   Padding(

@@ -32,7 +32,7 @@ class _HeightWidgetState extends State<HeightWidget> {
               )
             ],
           ),
-          Slider(min: 0, max: 240,value: _height.toDouble(),
+          Slider(min: 100, max: 210 ,value: _height.toDouble(),
           thumbColor: Colors.red,
           onChanged: (value){
             setState(() {

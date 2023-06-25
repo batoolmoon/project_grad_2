@@ -18,6 +18,7 @@ class _TfliteModelState extends State<TfliteModel> {
   late List _results;
   bool imageSelect = false;
   late String caloriesResult="";
+  int qun=1;
   @override
   void initState() {
     super.initState();
@@ -107,6 +108,8 @@ class _TfliteModelState extends State<TfliteModel> {
     );
     setState(() {
       _results = recognitions!;
+      print ("_results $_results");
+      caloriesResult=_results[0]["label"].toString().substring(_results[0]["label"].toString().indexOf("-")+1,_results[0]["label"].toString().indexOf("c")-1);
       _image = image;
       imageSelect = true;
     });
@@ -164,19 +167,28 @@ class _TfliteModelState extends State<TfliteModel> {
             ),
           ),
 
+          imageSelect?Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () { setState(() {qun++;}); }, child: Icon(Icons.add),),
+              SizedBox(width: 10,),
+              Text("$qun"),
+              SizedBox(width: 10,),
+              ElevatedButton(onPressed: () { qun-1>=1?
+              setState(() {qun--;}):null; }, child: Icon(Icons.minimize),),
+            ],
+          ):Container(),
+
           imageSelect?  Container(
             height: 40,
-            margin: EdgeInsets.only(left: 80, right: 80,top: 20),
+            margin: EdgeInsets.only(left: 80, right: 80,top: 20,bottom: 10),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purpleAccent
               ),
               onPressed: () {
-                _results.map((result) {
-                caloriesResult=result["label"];
                 print("caloriesResult $caloriesResult" );
-              });
-                print("caloriesResult $caloriesResult" );
+                getSharedData();
               },
               child: Text('Save Calories Result'),
             ),
