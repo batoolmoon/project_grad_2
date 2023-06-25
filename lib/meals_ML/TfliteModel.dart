@@ -28,7 +28,7 @@ class _TfliteModelState extends State<TfliteModel> {
   getSharedData()  async {
    SharedPreferences prefs = await SharedPreferences.getInstance();
    setState(() {
-     caloriesResult=prefs.setString("calories", caloriesResult) as String;
+   prefs.setInt("calories", int.parse(caloriesResult)*qun);
 
    });
 
@@ -109,10 +109,12 @@ class _TfliteModelState extends State<TfliteModel> {
     setState(() {
       _results = recognitions!;
       print ("_results $_results");
-      caloriesResult=_results[0]["label"].toString().substring(_results[0]["label"].toString().indexOf("-")+1,_results[0]["label"].toString().indexOf("c")-1);
       _image = image;
       imageSelect = true;
+
     });
+    caloriesResult=_results[0]["label"].toString().substring(_results[0]["label"].toString().indexOf("-")+1,_results[0]["label"].toString().indexOf("c")-1);
+
   }
 
   @override
@@ -187,7 +189,8 @@ class _TfliteModelState extends State<TfliteModel> {
                   backgroundColor: Colors.purpleAccent
               ),
               onPressed: () {
-                print("caloriesResult $caloriesResult" );
+                print("caloriesResult ${int.parse(caloriesResult)*qun}" );
+                print(caloriesResult);
                 getSharedData();
               },
               child: Text('Save Calories Result'),

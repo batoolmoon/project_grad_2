@@ -28,11 +28,10 @@ class _HeightWidgetState extends State<HeightWidget> {
               Text(_height.toString(),style: TextStyle(fontSize: 40),),
               SizedBox(width: 10,),
               Text("cm",style: TextStyle(fontSize: 20,color: Colors.grey),
-
               )
             ],
           ),
-          Slider(min: 100, max: 210 ,value: _height.toDouble(),
+          Slider(min: 0, max: 210.0,value: _height.toDouble(),
           thumbColor: Colors.red,
           onChanged: (value){
             setState(() {

@@ -14,9 +14,9 @@ class DailyTrack extends StatefulWidget {
 }
 
 class _DailyTrackState extends State<DailyTrack> {
- late double Water=0.0;
+   late double Water=0.0;
  late int Steps=0;
-  late int CaloriesFood=0;
+  late  int CaloriesFood=0;
   late double CaloriesBurn=0;
   late double bmi=0.0;
   late double trackCalories=0.0;
@@ -37,13 +37,15 @@ class _DailyTrackState extends State<DailyTrack> {
   getSharedData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      // Retrieve and update the values as before
-      setState(() {
-        Steps = int.parse(prefs.getString("steps")!);
-        Water += prefs.getDouble("water")!;
-        bmi = prefs.getDouble("bmiScore")!;
-        CaloriesBurn = prefs.getDouble("caloriesBurn")!;
-      });
+      // Retrieve and
+   setState(() {
+     Steps = int.parse(prefs.getString("steps")!);
+     Water += prefs.getDouble("water")!;
+     bmi = prefs.getDouble("bmiScore")!;
+     CaloriesBurn = prefs.getDouble("caloriesBurn")!;
+     CaloriesFood+=prefs.getInt("calories")!;
+   });
+
 
     print("Water $Water");
     print("Steps $Steps");
@@ -81,7 +83,7 @@ class _DailyTrackState extends State<DailyTrack> {
             height: 160,
             child: CircularProgressIndicator(
               strokeWidth: 8,
-              value: 0.7,
+              value:(trackCalories-CaloriesFood)/100000,
               backgroundColor: Color.fromRGBO(248, 250, 252, 1).withOpacity(0.2),
               valueColor: AlwaysStoppedAnimation < Color > (Colors.white),
             ),

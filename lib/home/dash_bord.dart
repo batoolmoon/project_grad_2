@@ -75,7 +75,7 @@ class _DashBordState extends State<DashBord> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/frame-P97.png",width: 80,height: 80,),
+                      Image.asset("assets/pic.png",width: 80,height: 80,),
                       SizedBox(width: 10,),
                       Text("The body achieves \nwhat the mind believes",style: TextStyle(fontWeight:FontWeight.w900 , color: Colors.white ,fontSize: 20),),
                     ],

@@ -95,7 +95,7 @@ class _StepsState extends State<Steps> {
     _stepCountStream = Pedometer.stepCountStream;
     _stepCountStream.listen(onStepCount).onError(onStepCountError);
 
-    if (!mounted) return;
+
   }
 
   @override
